@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using GummiBearKingdom.Models;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using GummiBearKingdom.Models;
+
 
 namespace GummiBearKingdom
 {
@@ -28,7 +28,7 @@ namespace GummiBearKingdom
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddEntityFramework()
+            services.AddEntityFrameworkMySql()
                     .AddDbContext<GummiBearKingdomDbContext>(options =>
                                                              options.UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
         }
