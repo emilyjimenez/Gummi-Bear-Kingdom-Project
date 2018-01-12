@@ -27,17 +27,23 @@ namespace GummiBearKingdom
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
             services.AddEntityFramework()
                     .AddDbContext<GummiBearKingdomDbContext>(options =>
                                                              options.UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.Run(async (context) =>
+            app.UseStaticFiles();
+            app.UseDeveloperExceptionPage();
+            app.UseMvc(routes =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
+            loggerFactory.AddConsole();
         }
     }
 }

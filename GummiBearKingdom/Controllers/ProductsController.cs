@@ -8,12 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GummiBearKingdom.Controllers
 {
-    public class HomeController : Controller
+    public class ProductsController : Controller
     {
-        // GET: /<controller>/
-        public IActionResult Index()
-        {
-            return View();
-        }
     }
 }
